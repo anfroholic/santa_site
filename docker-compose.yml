@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: api_thing
     command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    volumes:
+      - .:/code
     ports:
       - 80:80
     environment:
