@@ -12,7 +12,6 @@ services:
       - 80:80
     environment:
       PYTHONUNBUFFERED: 1
-    restart: 
-      - always
+    restart: unless-stopped
 
   
