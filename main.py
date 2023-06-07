@@ -1,4 +1,4 @@
-
+import uvicorn
 
 from fastapi import FastAPI, HTMLResponse
 
@@ -26,4 +26,5 @@ def read_root():
     <h1>Santa Site for Mark Wingate</h1>
     """
 
-
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=80, log_level="info")
