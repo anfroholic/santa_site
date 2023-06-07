@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI
 
 from fastapi.responses import HTMLResponse
-
+from datetime import datetime
 
 
 # import debugpy
@@ -23,7 +23,8 @@ async def startup_event():
 @app.get("/", response_class=HTMLResponse)
 def read_root():
     return f"""
-    <h1>Santa Site for Mark Wingate</h1>
+    <h1>Santa Site for Mark Wingate</h1><br>
+    <strong>The current time is: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     """
 
 if __name__ == "__main__":
