@@ -26,12 +26,3 @@ async def startup_event():
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse('index.html', {'request': request, 'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
-
-# def read_root():
-#     return f"""
-#     <h1>Santa Site for Mark Wingate</h1><br>
-#     <strong>The current time is: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-#     """
-
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host="0.0.0.0", port=80, log_level="info")

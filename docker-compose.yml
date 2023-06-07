@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  api_thing:
+  santa:
     build: 
       context: .
       dockerfile: Dockerfile
