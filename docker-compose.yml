@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  api_thing:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_thing
+    command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    ports:
+      - 80:80
+    volumes:
+      - .:/code
+    environment:
+      PYTHONUNBUFFERED: 1
+
+
+  
