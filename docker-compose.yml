@@ -10,8 +10,6 @@ services:
     command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
     ports:
       - 80:80
-    volumes:
-      - .:/code
     environment:
       PYTHONUNBUFFERED: 1
 
