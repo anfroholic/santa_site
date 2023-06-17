@@ -1,4 +1,4 @@
 install docker
 install docker-compose
-create systemd service to start docker container at runtime located at etc/systemd/system/santasite.service
+run docker-compose
 

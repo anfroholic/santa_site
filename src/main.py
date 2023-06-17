@@ -22,7 +22,14 @@ async def startup_event():
     """Start up event for FastAPI application."""
     print("there's a new cowboy in town!!")
 
-
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse('index.html', {'request': request, 'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
+@app.get("/booking", response_class=HTMLResponse)
+async def calendar(request: Request):
+    return templates.TemplateResponse('booking.html', {'request': request})
+
+@app.get("/gallery", response_class=HTMLResponse)
+async def calendar(request: Request):
+    return templates.TemplateResponse('gallery.html', {'request': request})
