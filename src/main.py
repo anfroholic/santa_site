@@ -9,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
 # import debugpy
-
+hostname='santamark4xmas.com'
 # debugpy.listen(("0.0.0.0", 5678))
 # print("Waiting for client to attach...")
 # debugpy.wait_for_client()
@@ -30,6 +30,17 @@ async def home(request: Request):
 async def calendar(request: Request):
     return templates.TemplateResponse('booking.html', {'request': request})
 
+
+pics = [
+    'FB_IMG_1637615348424.jpg',
+    'FB_IMG_1637615437607.jpg',
+    'FB_IMG_1641144420291.jpg',
+    'FB_IMG_1636497702106.jpg',
+    'FB_IMG_1636497721456.jpg',
+    'FB_IMG_1637373239319.jpg'
+]
+
+
 @app.get("/gallery", response_class=HTMLResponse)
 async def calendar(request: Request):
-    return templates.TemplateResponse('gallery.html', {'request': request})
+    return templates.TemplateResponse('gallery.html', {'request': request, 'pics': pics, 'hostname': hostname})

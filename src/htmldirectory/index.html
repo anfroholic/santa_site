@@ -3,26 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}/?id=1ds1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}/?id=ss1sssdds1s">
     <link rel="icon" href="{{ url_for('static', path='favicon.ico') }}">
 </head>
 <body>
 {% include "header.html" %}
+<div id="main" style="width:100%; display: flex; text-align:left">
 
-<h1>Christmas Visits with Santa Mark</h1>
-<h2>House Call or Party</h2>
-Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or whatever else you might have in mind.<br>
-Just ask! <br>
+    <div style="width:49%; min-width: 500px; margin:auto; ">
+        <h1 style="font-size: 8vh">Christmas Visits with Santa Mark</h1>
+        <h2>House Call or Party</h2>
+        <p style="font-size: larger;">Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or whatever else you might have in mind.<br>
+            Just ask! <br>
+        </p>
+        <a href="/booking"><button class="button">See Rates</button></a>
+        <br><br><br><br>
+    </div>
 
-<a href="/booking"><button class="button">See Rates</button></a>
+    <div style="width: 49%; text-align: center; min-width:600px;">
 
-<br>
-<img src="{{ url_for('static', path='FB_IMG_1637615348424.jpg') }}" width="500px">
-<img src="{{ url_for('static', path='FB_IMG_1637615437607.jpg') }}" width="500px">
-<img src="{{ url_for('static', path='FB_IMG_1641144420291.jpg') }}" width="500px">
-<img src="{{ url_for('static', path='FB_IMG_1636497702106.jpg') }}" width="500px">
-<img src="{{ url_for('static', path='FB_IMG_1636497721456.jpg') }}" width="500px">
-<img src="{{ url_for('static', path='FB_IMG_1637373239319.jpg') }}" width="500px">
+            <a href="/gallery"><img style="text-align:center; margin-top: 20px" src="{{ url_for('static', path='FB_IMG_1637615437607.jpg') }}" width="500px"></a>
+        </div>
+
+        
+    </div>
+</div>
+
+<script>
+
+    var onresize = function() {
+        //your code here
+        //this is just an example
+        width = document.body.clientWidth;
+        console.log(width)
+
+        if (width < 1050) {
+            document.getElementById('main').style.display = 'block'
+        }
+        else {
+            document.getElementById('main').style.display = 'flex'
+        }
+     }
+     window.addEventListener("resize", onresize);
+     window.addEventListener("load", onresize);
+</script>
+
 
 </body>
 </html>

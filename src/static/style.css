@@ -12,22 +12,21 @@
 }
 body {
     background-color: rgb(94, 111, 220);
+    display: block;
   }
-.header {
-    background-color: rgb(243, 8, 8);
-    height: 70px;
-    border:hsl(19, 16%, 77%) solid 3px;
-    border-radius: 12px;
-}
+
 html{
     font-family: Arial;
-    color: beige;
+    color: white;
     display:inline-block;
     margin: 0px auto;
     }
 h1, h2, h3, h4{color: white;}
 a {
     color: white;
+}
+p {
+    font-size: large;
 }
 input, textarea {
     background-color: var(--beige);
