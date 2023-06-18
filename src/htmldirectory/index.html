@@ -10,7 +10,7 @@
 {% include "header.html" %}
 <div id="main" style="width:100%; display: flex; text-align:left">
 
-    <div style="width:49%; min-width: 500px; margin:auto; ">
+    <div style="width:49%; min-width: 275px; margin:auto; ">
         <h1 style="font-size: 8vh">Christmas Visits with Santa Mark</h1>
         <h2>House Call or Party</h2>
         <p style="font-size: larger;">Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or whatever else you might have in mind.<br>
@@ -20,7 +20,7 @@
         <br><br><br><br>
     </div>
 
-    <div style="width: 49%; text-align: center; min-width:600px;">
+    <div style="width: 49%; text-align: center; min-width:550px;">
 
             <a href="/gallery"><img style="text-align:center; margin-top: 20px" src="{{ url_for('static', path='FB_IMG_1637615437607.jpg') }}" width="500px"></a>
         </div>
@@ -37,7 +37,7 @@
         width = document.body.clientWidth;
         console.log(width)
 
-        if (width < 1050) {
+        if (width < 940) {
             document.getElementById('main').style.display = 'block'
         }
         else {
