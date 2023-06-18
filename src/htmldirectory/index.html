@@ -10,10 +10,10 @@
 {% include "header.html" %}
 <div id="main" style="width:100%; display: flex; text-align:center">
 
-    <div style="width:49%; min-width: 275px; margin:auto;">
+    <div id="house_call" style="width:49%; min-width: 275px; padding-left:25px; padding-right:25px;">
         <h1 style="font-size: 8vh">Christmas Visits with Santa Mark</h1>
         <h2>House Call or Party</h2>
-        <p style="font-size: larger;">Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or whatever else you might have in mind.<br>
+        <p style="font-size: larger; padding-right:50px; padding-left:50px;">Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or whatever else you might have in mind.<br>
             Just ask! <br>
         </p>
         <a href="/booking"><button class="button">See Rates</button></a>
@@ -40,10 +40,12 @@
         if (width < 1000) {
             document.getElementById('main').style.display = 'block'
             document.getElementById('picture').style.width = "100%"
+            document.getElementById('house_call').style.width = "100%"
         }
         else {
             document.getElementById('main').style.display = 'flex'
             document.getElementById('picture').style.width = "none"
+            document.getElementById('house_call').style.width = "49%"
         }
      }
      window.addEventListener("resize", onresize);
