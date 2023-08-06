@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}/?id=ss1sssdds1s">
-    <link rel="icon" href="{{ url_for('static', path='favicon.ico') }}">
+    <link rel="stylesheet" href="http://{{ hostname }}/static/style.css">
+    <link rel="icon" href="http://{{ hostname }}/static/favicon.ico">
 </head>
 <body>
 {% include "header.html" %}
@@ -22,7 +22,7 @@
 
     <div id="picture" style="width: 49%; text-align: center; min-width:550px;">
 
-            <a href="/gallery"><img style="text-align:center; margin-top: 20px" src="{{ url_for('static', path='FB_IMG_1637615437607.jpg') }}" width="500px"></a>
+            <a href="/gallery"><img style="text-align:center; margin-top: 20px" src="http://{{ hostname }}/static/FB_IMG_1637615437607.jpg" width="500px"></a>
     </div>
 
         

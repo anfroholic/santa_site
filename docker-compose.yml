@@ -14,6 +14,7 @@ services:
       - 80:80
     environment:
       PYTHONUNBUFFERED: 1
+      HOSTNAME: santamark4u
     restart: unless-stopped
 
   

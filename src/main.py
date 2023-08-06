@@ -24,11 +24,11 @@ async def startup_event():
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse('index.html', {'request': request, 'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+    return templates.TemplateResponse('index.html', {'request': request, 'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 'hostname': hostname})
 
 @app.get("/booking", response_class=HTMLResponse)
 async def calendar(request: Request):
-    return templates.TemplateResponse('booking.html', {'request': request})
+    return templates.TemplateResponse('booking.html', {'request': request, 'hostname': hostname})
 
 
 pics = [
