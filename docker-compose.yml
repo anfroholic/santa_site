@@ -7,14 +7,22 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: api_thing
-    command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - .:/code
     ports:
-      - 80:80
+      - 8000:8000
     environment:
       PYTHONUNBUFFERED: 1
       HOSTNAME: santamark4u
     restart: unless-stopped
 
-  
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - santa
+
