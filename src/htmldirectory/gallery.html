@@ -13,7 +13,7 @@
 
 <h1>Gallery</h1>
 {% for pic in pics %}
-<a class="example-image-link" href="/static/{{ pic }}" data-lightbox="example-1"><img src="http://{{ hostname }}/static/{{ pic }}" height="300"></a>
+<a class="example-image-link" href="/static/{{ pic }}" data-lightbox="example-1"><img src="/static/{{ pic }}" height="300"></a>
 {% endfor %}
 <br><br>
 
