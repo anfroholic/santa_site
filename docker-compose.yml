@@ -11,7 +11,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8500:8000
     environment:
       PYTHONUNBUFFERED: 1
       HOSTNAME: santamark4u

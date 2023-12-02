@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico">
+</head>
+<body>
+{% include "header.html" %}
+
+{% macro make_choose(name, choices) %} 
+    <div style="border: solid 2px rgb(255, 255, 255); border-radius:20px; padding:15px; margin:25px; background-color: rgb(60, 10, 207)" id="{{ name }}">
+    <h2>{{ name }}</h2>
+    {% for choice in choices %}
+        {% if choice['name'] == 'Special Request' %}
+        <div title="{{ choice['snippet'] }}">
+            <input type="radio" id="{{ choice['name'] }}" name="{{ name }}" value="{{ choice['name'] }}">
+            <label for="html">{{ choice['name'] }}</label>
+            <span style="color: beige; font-size: x-small;">{{ choice['snippet'] }}</span><span style="background-color:antiquewhite; border: rgb(182, 181, 183) 2px solid; border-radius:7px; color: rgb(212, 12, 59); font-size: small; padding: 2px">+$20</span><br>
+            <input type="text" name="{{ name }}|{{ choice['name'] }}" id="{{ choice['name'] }}">
+        </div>
+        {% else %}
+        <div title="{{ choice['snippet'] }}">
+            <input type="radio" id="{{ choice['name'] }}" name="{{ name }}" value="{{ choice['name'] }}">
+            <label for="html">{{ choice['name'] }}</label>
+            <span style="color: beige; font-size: x-small;">{{ choice['snippet'] }}</span>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endmacro %}
+
+<h1>Santa Choose Your Own Adventure</h1>
+<form action="/adventure" method="post">
+{% for name, choices in story.items() %}
+    {{ make_choose(name, choices) }}
+{% endfor %}
+<input type="submit" value="Submit">
+</form>
+

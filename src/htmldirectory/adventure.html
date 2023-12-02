@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico">
+</head>
+<body>
+{% include "header.html" %}
+<br><br>
+<div style="border: white 2px solid; border-radius: 15px; padding: 5px; width:fit-content; padding: 15px">
+{% for name, adv in adventure.items() %}
+    <h1>{{name}}: {{adv}}</h1>
+{% endfor %}
+</div>
+
+<br><br>
+<div style="border: white 2px solid; border-radius: 15px; padding: 25px; width:fit-content">
+    <h1>The Story</h1>
+    {% for line in full_text %}
+    {{line}}<br>
+{% endfor %}
+</div>
+
+<br><br>
+<a href="/choose_adventure"><button class="button">choose another adventure</button></a>
