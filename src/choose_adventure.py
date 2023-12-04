@@ -6,7 +6,7 @@ story = {
         {"name": "Happy Holidays",
          "snippet": "Hello from the north pole, We hope you're all having happy holidays"},
         {"name": "Special Request",  # the term 'Special Request' is special and will inject the text input field and more
-         "snippet": "eg. Hello from Santo to the [insert family name] Family"},
+         "snippet": "eg. Hello from Santa to the Robinson Family"},
     ],
     "Enjoy Family": [
         {"name": "Grandmas",

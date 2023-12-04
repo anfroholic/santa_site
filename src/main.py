@@ -57,7 +57,8 @@ async def choose_adventure(request: Request):
             full_text.append(snip)
         else:
             remove = len('Special Request: ')
-            full_text.append(v[remove:])
+            text = v[remove:].split('\n')
+            full_text.extend(text)
        
     return templates.TemplateResponse('adventure.html', {'request': request, 'adventure': adventure, 'full_text': full_text})
 
