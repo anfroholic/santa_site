@@ -1,44 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="icon" href="/static/favicon.ico">
-</head>
-<body>
-{% include "header.html" %}
+    <style>
+        :root {
+            --form-control-color: rgb(255, 0, 4);
+        }
 
-{% macro make_choose(name, choices) %} 
-    <div style="border: solid 2px rgb(255, 255, 255); border-radius:20px; padding:15px; margin:25px; background-color: rgb(60, 10, 207)" id="{{ name }}">
-    <h2>{{ name }}</h2>
-    {% for choice in choices %}
-        {% if choice['name'] == 'Special Request' %}
-        <div title="{{ choice['snippet'] }}">
-            <input style="margin:6px;" type="radio" id="{{ choice['name'] }}" name="{{ name }}" value="{{ choice['name'] }}">
-            <label for="html">{{ choice['name'] }}</label>
-            <span style="color: beige; font-size: x-small;">{{ choice['snippet'] }}</span><span style="background-color:antiquewhite; border: rgb(182, 181, 183) 2px solid; border-radius:7px; color: rgb(212, 12, 59); font-size: small; padding: 2px">+$20</span><br>
-            
-            <textarea style="width:50%; margin-left: 30px;" name="{{ name }}|{{ choice['name'] }}" id="{{ choice['name'] }}"></textarea>
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        form {
+            display: grid;
+            place-content: center;
+            min-height: 100vh;
+        }
+
+        .form-control {
+            font-family: system-ui, sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1.1;
+            display: grid;
+            grid-template-columns: 1em auto;
+            gap: 0.5em;
+        }
+
+        .form-control+.form-control {
+            margin-top: 1em;
+        }
+
+        .form-control:focus-within {
+            color: var(--form-control-color);
+        }
+
+        input[type="radio"] {
+            /* Add if not using autoprefixer */
+            -webkit-appearance: none;
+            /* Remove most all native input styles */
+            appearance: none;
+            /* For iOS < 15 */
+            background-color: var(--form-background);
+            /* Not removed via appearance */
+            margin: 0;
+
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 50%;
+            transform: translateY(-0.075em);
+
+            display: grid;
+            place-content: center;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 300ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--form-control-color);
+            /* Windows High Contrast Mode */
+            background-color: CanvasText;
+        }
+
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body style="font-size: xx-large; ">
+    {% include "header.html" %}
+
+    {% macro make_choose(name, choices) %}
+    <div style="border: solid 2px rgb(255, 255, 255); border-radius:20px; padding:15px; margin:25px; background-color: rgb(60, 10, 207);"
+        id="{{ name }}">
+        <h2>{{ name }}</h2>
+        {% for choice in choices %}
+        {% if choice.name == 'Special Request' %}
+        <div title="{{ choice.snippet }}" style="border: 2px white solid; border-radius:5px; ">
+            <input style="margin:6px;" type="radio" id="{{ choice.name }}" name="{{ name }}" value="{{ choice.name }}">
+            <label for="html">{{ choice.name }}</label>
+            <!-- <span style="color: beige; font-size: x-small;">{{ choice['snippet'] }}</span> -->
+            <span
+                style="background-color:antiquewhite; border: rgb(182, 181, 183) 2px solid; border-radius:7px; color: rgb(212, 12, 59); font-size: small; padding: 2px">+$20</span><br>
+
+            <textarea style="width:50%; margin-left: 30px;" name="{{ name }}|{{ choice.name }}" id="{{ choice.name }}"
+                placeholder="{{ choice.snippet }}"></textarea>
         </div>
         {% else %}
-        <div title="{{ choice['snippet'] }}">
-            <input style="margin:6px;" type="radio" id="{{ choice['name'] }}" name="{{ name }}" value="{{ choice['name'] }}">
-            <label for="html">{{ choice['name'] }}</label>
+        <div title="{{ choice.snippet }}" style="border: 2px white solid; border-radius:5px; ">
+            <input style="margin:6px;" type="radio" id="{{ choice['name'] }}" name="{{ name }}"
+                value="{{ choice.name }}">
+            <label for="html">{{ choice.name }}</label>
             <span style="color: beige; font-size: x-small;">{{ choice['snippet'] }}</span>
+            <img src="/static/cyoa/{{ choice.pic }}.jpg" alt="{{ choice.pic }}" style="width:  75px;">
         </div>
         {% endif %}
-    {% endfor %}
+        {% endfor %}
     </div>
-{% endmacro %}
+    {% endmacro %}
 
-<h1>Santa Choose Your Own Adventure</h1>
-<form action="/adventure" method="post">
-{% for name, choices in story.items() %}
-    {{ make_choose(name, choices) }}
-{% endfor %}
-<input type="submit" class="button" value="Submit" style="margin-left: 80px;">
-</form>
+    <h1>Santa Choose Your Own Adventure</h1>
+    <form action="/adventure" method="post">
+        {% for name, choices in story.items() %}
+        {{ make_choose(name, choices) }}
+        {% endfor %}
+        <input type="submit" class="button" value="Submit" style="margin-left: 80px;">
+    </form>
 
-<div style="height: 400px;"></div>
+    <div style="height: 400px;"></div>
