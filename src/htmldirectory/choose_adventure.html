@@ -84,6 +84,7 @@
 <body style="font-size: xx-large; ">
     {% include "header.html" %}
 
+
     {% macro make_choose(name, choices) %}
     <div style="border: solid 2px rgb(255, 255, 255); border-radius:20px; padding:15px; margin:25px; background-color: rgb(60, 10, 207);"
         id="{{ name }}">
@@ -115,10 +116,12 @@
 
     <h1>Santa Choose Your Own Adventure</h1>
     <form action="/adventure" method="post">
+        <input id='family' name="family" type="text" placeholder="family name" style="font-size:x-large">
         {% for name, choices in story.items() %}
         {{ make_choose(name, choices) }}
         {% endfor %}
         <input type="submit" class="button" value="Submit" style="margin-left: 80px;">
     </form>
+    <a href="/get_adventures"><button>get_adventures</button></a>
 
     <div style="height: 400px;"></div>

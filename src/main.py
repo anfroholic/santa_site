@@ -2,12 +2,14 @@ import uvicorn
 
 from fastapi import FastAPI, Query
 
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from datetime import datetime
 from fastapi import FastAPI, Form, Request, File
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from src.choose_adventure import story, lookup
+from src.choose_adventure import story, lookup, adventures
+
+import io, json
 # import debugpy
 hostname='santamark4xmas.com'
 # debugpy.listen(("0.0.0.0", 5678))
@@ -41,26 +43,60 @@ async def choose_adventure(request: Request):
                 return option['snippet']
             
     raw = dict(await request.form())
-
+    
+    # with open('temp.json', 'w') as f:
+    #     json.dump(raw, f, indent=2)
+        
+    # with open('temp.json', 'r') as f:
+    #     pretty = f.read()
+        
+    # print(pretty)
+    print(raw)
+    
     adventure = {k:v for k,v in raw.items() if '|' not in k} 
     for k, v in adventure.items():
         if v == "Special Request":
             adventure[k] = f"Special Request: {raw[f'{k}|Special Request']}"
             
+    
     print(adventure)
     full_text = []
     for k,v in adventure.items():
         if 'Special Request: ' not in v:
+            if k == 'family':
+                full_text.append(v)
+                continue
+            
             chapter = story[k]
             snip = get_snip(chapter=chapter, name=v)
             
             full_text.append(snip)
+        
         else:
             remove = len('Special Request: ')
             text = v[remove:].split('\n')
             full_text.extend(text)
        
     return templates.TemplateResponse('adventure.html', {'request': request, 'adventure': adventure, 'full_text': full_text})
+
+@app.get("/get_adventures", response_class=JSONResponse)
+async def get_adventures(request: Request):
+    cutlist = []
+    for adventure in adventures:
+        if adventure['Greeting'].startswith('Special Request: '):
+            greeting = adventure['Greeting'].replace('Special Request: ', '')
+            
+            cut = {
+                'family': adventure['family'],
+                'create_clip': greeting,
+            }
+            cutlist.append(cut)
+            
+    return {
+        'cutlist': cutlist,
+        'adventures': adventures
+    }
+
 
 
 pics = [

@@ -23,7 +23,7 @@ story = {
          "snippet": "Twas the night before Christmas and all through the house...",
          "pic": "book"},
         {"name": "Santa's Christmas Adventures",
-         "snippet": "Have you heard of hte great Forest of Burzee",
+         "snippet": "Have you heard of the great Forest of Burzee",
          "pic": "phone"}
     ],
     # Some Goodness section could be good here. eg 'I have heard you have been good boys and girls'
@@ -47,7 +47,12 @@ story = {
     ]
 }
 
-
+adventures = [
+    {'family': 'the hendersons', 'Greeting': 'Happy Holidays', 'Enjoy Family': 'Meals', 'Storytime': 'Night Before Christmas', 'Presents': 'Upstairs'},
+    {'family': 'the smiths', 'Greeting': 'Special Request: happy birthday to tommy and suzie', 'Enjoy Family': 'Grandmas', 'Storytime': 'Night Before Christmas', 'Presents': 'Kitchen'},    {'family': 'the jacksons', 'Greeting': 'Merry Christmas', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Tree'},
+    {'family': 'the jacksons', 'Greeting': 'Merry Christmas', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Tree'},
+    {'family': 'the johnsons', 'Greeting': 'Special Request: charlie has been very bad this year', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Downstairs'},
+]
 
 lookup = {}
 for name, choices in story.items():
