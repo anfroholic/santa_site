@@ -49,7 +49,7 @@ story = {
 
 adventures = [
     {'family': 'the hendersons', 'Greeting': 'Happy Holidays', 'Enjoy Family': 'Meals', 'Storytime': 'Night Before Christmas', 'Presents': 'Upstairs'},
-    {'family': 'the smiths', 'Greeting': 'Special Request: happy birthday to tommy and suzie', 'Enjoy Family': 'Grandmas', 'Storytime': 'Night Before Christmas', 'Presents': 'Kitchen'},    {'family': 'the jacksons', 'Greeting': 'Merry Christmas', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Tree'},
+    {'family': 'the smiths', 'Greeting': 'Special Request: happy birthday to tommy and suzie', 'Enjoy Family': 'Grandmas', 'Storytime': 'Night Before Christmas', 'Presents': 'Kitchen'}, 
     {'family': 'the jacksons', 'Greeting': 'Merry Christmas', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Tree'},
     {'family': 'the johnsons', 'Greeting': 'Special Request: charlie has been very bad this year', 'Enjoy Family': 'Meals', 'Storytime': "Santa's Christmas Adventures", 'Presents': 'Downstairs'},
 ]
