@@ -7,6 +7,7 @@ from datetime import datetime
 from fastapi import FastAPI, Form, Request, File
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware 
 from src.choose_adventure import story, lookup, adventures
 
 import io, json
@@ -18,6 +19,16 @@ hostname='santamark4xmas.com'
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="src/static", html=True), name="static")
 templates = Jinja2Templates(directory='src/htmldirectory')    
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # @app.on_event("startup")
 # async def startup_event():
@@ -60,6 +71,7 @@ async def choose_adventure(request: Request):
             
     
     print(adventure)
+    adventures.append(adventure)
     full_text = []
     for k,v in adventure.items():
         if 'Special Request: ' not in v:
@@ -97,7 +109,20 @@ async def get_adventures(request: Request):
         'adventures': adventures
     }
 
-
+@app.get("/get_cutlist", response_class=JSONResponse)
+async def get_adventures(request: Request):
+    cutlist = []
+    for adventure in adventures:
+        if adventure['Greeting'].startswith('Special Request: '):
+            greeting = adventure['Greeting'].replace('Special Request: ', '')
+            
+            cut = {
+                'family': adventure['family'],
+                'create_clip': greeting,
+            }
+            cutlist.append(cut)
+            
+    return cutlist
 
 pics = [
     'FB_IMG_1637615348424.jpg',
