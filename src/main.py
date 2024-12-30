@@ -63,7 +63,10 @@ async def choose_adventure(request: Request):
         
     # print(pretty)
     print(raw)
-    
+    if len(raw) < 6:
+        return templates.TemplateResponse('error.html', {'request': request, 'error': 'Please fill out all fields.'})
+
+
     adventure = {k:v for k,v in raw.items() if '|' not in k} 
     for k, v in adventure.items():
         if v == "Special Request":
@@ -88,8 +91,9 @@ async def choose_adventure(request: Request):
             remove = len('Special Request: ')
             text = v[remove:].split('\n')
             full_text.extend(text)
-       
+    
     return templates.TemplateResponse('adventure.html', {'request': request, 'adventure': adventure, 'full_text': full_text})
+    
 
 @app.get("/get_adventures", response_class=JSONResponse)
 async def get_adventures(request: Request):
