@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map with Events</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Map</h1>
+    <div id="map"></div>
+    <div id="controls">
+        <label for="radius">Search Radius (miles):</label>
+        <input type="range" id="radius" min="1" max="100" value="10" step="1">
+        <span id="radiusValue">10</span> miles
+        <br>
+        <label for="date">Choose Date:</label>
+        <input type="date" id="date">
+    </div>
+
+    <table id="eventsTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Event rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <script>
+        const events = [
+            { date: "2025-01-20", location: [42.0334, -88.0834], description: "Event in Schaumburg" },
+            { date: "2025-01-21", location: [42.0630, -87.9876], description: "Event in Arlington Heights" },
+            { date: "2025-01-22", location: [42.0884, -87.9806], description: "Event in Palatine" }
+        ];
+
+        const map = L.map('map').setView([42.0334, -88.0834], 10); // Centered on Chicago's NW suburbs
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const radiusInput = document.getElementById('radius');
+        const radiusValue = document.getElementById('radiusValue');
+        const dateInput = document.getElementById('date');
+        const eventsTableBody = document.querySelector('#eventsTable tbody');
+
+        radiusInput.addEventListener('input', () => {
+            radiusValue.textContent = radiusInput.value;
+        });
+
+        const showNearbyEvents = (lat, lng) => {
+            const radiusMiles = parseFloat(radiusInput.value);
+            const radiusKm = radiusMiles * 1.60934;
+
+            const nearbyEvents = events.filter(event => {
+                const distance = map.distance([lat, lng], event.location) / 1000; // Distance in km
+                return distance <= radiusKm;
+            });
+
+            alert(nearbyEvents.length > 0
+                ? `Nearby Events:\n${nearbyEvents.map(e => `${e.date}: ${e.description}`).join('\n')}`
+                : 'No events found within the selected radius.');
+        };
+
+        map.on('click', e => {
+            const { lat, lng } = e.latlng;
+            showNearbyEvents(lat, lng);
+        });
+
+        const updateMapPins = (filteredEvents) => {
+            map.eachLayer(layer => {
+                if (layer.options && layer.options.pane === 'markerPane') {
+                    map.removeLayer(layer);
+                }
+            });
+
+            filteredEvents.forEach(event => {
+                L.marker(event.location).addTo(map)
+                    .bindPopup(`${event.date}: ${event.description}`);
+            });
+        };
+
+        const populateTable = () => {
+            eventsTableBody.innerHTML = '';
+            const sortedEvents = events.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            sortedEvents.forEach(event => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${event.date}</td>
+                    <td>${event.description}</td>
+                    <td><button onclick="showEventsForDate('${event.date}')">Show on Map</button></td>
+                `;
+                eventsTableBody.appendChild(row);
+            });
+        };
+
+        const showEventsForDate = (date) => {
+            const filteredEvents = events.filter(event => event.date === date);
+            updateMapPins(filteredEvents);
+        };
+
+        dateInput.addEventListener('change', () => {
+            const selectedDate = dateInput.value;
+            const filteredEvents = events.filter(event => event.date === selectedDate);
+            updateMapPins(filteredEvents);
+        });
+
+        // Initialize the table
+        populateTable();
+    </script>
+</body>
+</html>

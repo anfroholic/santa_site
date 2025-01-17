@@ -42,6 +42,10 @@ async def home(request: Request):
 async def calendar(request: Request):
     return templates.TemplateResponse('booking.html', {'request': request, 'hostname': hostname})
 
+@app.get("/map", response_class=HTMLResponse)
+async def calendar(request: Request):
+    return templates.TemplateResponse('map.html', {'request': request, 'hostname': hostname})
+
 @app.get("/choose_adventure", response_class=HTMLResponse)
 async def choose_adventure(request: Request):
     return templates.TemplateResponse('choose_adventure.html', {'request': request, 'story': story, 'lookup': list(lookup.keys())})
