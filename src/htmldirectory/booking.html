@@ -5,6 +5,40 @@
     <title></title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="icon" href="/static/favicon.ico">
+
+    <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      width: 80%;
+      max-width: 640px;
+      background: #000;
+    }
+
+    .modal-content video {
+      width: 100%;
+      height: auto;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+
 </head>
 <body>
 {% include "header.html" %}
@@ -36,7 +70,8 @@ phone: 815-345-3330 <br>
 Introducing *Sneaky Santa* — a unique holiday experience where Santa himself delivers a gift (provided by you) right into your home!<br>
 Whether he’s tiptoeing by the tree or caught red-handed on your security camera, your family will witness a real-life Santa sighting that brings the wonder of Christmas to life.<br>
 Perfect for kids and the young at heart, this one-of-a-kind surprise creates lasting memories and holiday cheer!<br>
-Spots are limited, so book your Sneaky Santa visit now!
+Spots are limited, so book your Sneaky Santa visit now! <br>
+<img src="static/artwork/logo/sneaky_tmb.png" alt="Watch Video" style="width:100%; max-width:200px; cursor:pointer;" onclick="openModal()">
     </span>
     
     
@@ -81,5 +116,43 @@ Spots are limited, so book your Sneaky Santa visit now!
 
 </div>
 <div style="height: 100px;"></div>
+
+
+<!-- Modal structure -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <video id="videoPlayer" controls>
+      <source src="/static/videos/sneaky_santa.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    var modal = document.getElementById("videoModal");
+    var video = document.getElementById("videoPlayer");
+    modal.style.display = "block";
+    video.currentTime = 0;
+    video.play();
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("videoModal");
+    var video = document.getElementById("videoPlayer");
+    modal.style.display = "none";
+    video.pause();
+  }
+
+  // Close modal when clicking outside content
+  window.onclick = function(event) {
+    var modal = document.getElementById("videoModal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
+
 </body>
 </html>
