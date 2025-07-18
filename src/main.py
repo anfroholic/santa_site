@@ -137,16 +137,6 @@ async def get_adventures(request: Request):
             
     return cutlist
 
-pics = [
-    'FB_IMG_1637615348424.jpg',
-    'FB_IMG_1637615437607.jpg',
-    'FB_IMG_1641144420291.jpg',
-    'FB_IMG_1636497702106.jpg',
-    'FB_IMG_1636497721456.jpg',
-    'FB_IMG_1637373239319.jpg'
-]
-
-
 pics = {}
 for file in sorted(os.listdir('src/static/pics')):
     parts = file.split('.')
