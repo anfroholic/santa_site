@@ -148,7 +148,7 @@ pics = [
 
 
 pics = {}
-for file in os.listdir('src/static/pics'):
+for file in sorted(os.listdir('src/static/pics')):
     parts = file.split('.')
     pics[parts[0]] = parts[1]
     
