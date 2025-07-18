@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% from 'helpers/carousel.html' import carousel %}
+{% from 'helpers/features.html' import make_features %}
+
+<html>
+
+<head>
+  <title>SantaMark4Xmas</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="/static/home/assets/css/main.css?{{random}}" />
+  <link rel="icon" href="/static/favicon.ico">
+  <noscript>
+    <link rel="stylesheet" href="/static/home/assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="homepage is-preload">
+  <div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header">
+      <!-- Inner -->
+      <div class="inner">
+        <header>
+          <h1><a href="#banner" id="logo" class="scrolly"><img src="/static/home/images/button.png" alt=""></a></h1>
+          <hr />
+          <p>A Santa for all your events, parties, and gatherings.</p>
+        </header>
+        <footer>
+          <a href="#banner" class="button circled scrolly">Start</a>
+        </footer>
+      </div>
+      {% include 'helpers/navbar.html' %}
+    </div>
+
+    <!-- Banner -->
+    <section id="banner">
+      <header>
+        <h2>Hi. I'm <strong>Santa Mark</strong>.</h2>
+        <p>
+          A Santa for all your events, parties, and gatherings.
+          <br>
+          Santa can come to your home or holiday party for Photos, Story Telling, Caroling, Gift Giving or what ever else you might have in mind for this visit. 
+        </p>
+      </header>
+    </section>
+
+    <!-- Carousel -->
+
+    <!-- Main -->
+    <div class="wrapper style2">
+      
+      <article id="main" class="container special">
+        <header>
+          <br>
+          <h2>Pictures with Santa</h2>
+        </header>
+        <a href="/gallery" class="image featured"><img src="/static/FB_IMG_1637615348424.jpg" alt="" /></a>
+        <footer>
+          <a href="/booking" class="button">Book Now!</a>
+        </footer>
+
+      </article>
+
+
+
+    </div>
+
+    {% include 'helpers/footer.html' %}
+
+  </div>
+  <!-- Scripts -->
+  <script src="/static/home/assets/js/jquery.min.js"></script>
+  <script src="/static/home/assets/js/jquery.dropotron.min.js"></script>
+  <script src="/static/home/assets/js/jquery.scrolly.min.js"></script>
+  <script src="/static/home/assets/js/jquery.scrollex.min.js"></script>
+  <script src="/static/home/assets/js/browser.min.js"></script>
+  <script src="/static/home/assets/js/breakpoints.min.js"></script>
+  <script src="/static/home/assets/js/util.js"></script>
+  <script src="/static/home/assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+
+
+{# this is a fake form for json to send submit msgs #}
+<form action="/submit" id="submitter" method="POST">
+    <input style="visibility: hidden;" type="text" id="msg" name="msg"><br>
+</form>
+
+<script>
+    function craft_submit(msg) {
+        var messager = document.getElementById('msg');
+        messager.value = JSON.stringify(msg);
+        console.log(messager.value);
+        document.getElementById('submitter').submit();
+    }
+</script>

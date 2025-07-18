@@ -1,0 +1,50 @@
+<!--
+	this is the square that has all the products in it with links
+-->
+
+<style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .gallery a {
+      margin: 0;
+      padding: 0;
+    }
+    .gallery img {
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .gallery img:hover {
+      border-color: rgb(6, 135, 112);
+      filter: brightness(70%);
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      display: none;
+    }
+
+    .gallery img:hover+.tooltip {
+      display: block;
+    }
+  </style>
+
+  <div style="margin: auto; display:inline-block">
+
+    <div style="margin: auto; width: 75%;" class="gallery">
+
+      {% for name, tmb in tmbs.items() %}
+        {% if tmb.location %}
+          <a href="products/{{name}}" style="padding: 0px; margin:0px; height:fit-content; line-height:1px">
+            <img src="{{ tmb.location }}" style="width: 100px;">
+            <div class="tooltip">{{name}}</div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>

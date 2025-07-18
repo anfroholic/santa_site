@@ -12,8 +12,10 @@
 {% include "header.html" %}
 
 <h1>Gallery</h1>
-{% for pic in pics %}
-<a class="example-image-link" href="/static/{{ pic }}" data-lightbox="example-1"><img src="/static/{{ pic }}" height="300"></a>
+{% for filename, ext in pics.items() %}
+<a href="/static/pics/{{ filename }}.{{ ext }}" data-lightbox="gallery">
+    <img src="/static/tmbs/{{ filename }}-tmb.{{ ext }}" alt="" loading="lazy" style="width: 290px; height: 232px; margin: 10px; border-radius: 8px;">
+</a>
 {% endfor %}
 <br><br>
 

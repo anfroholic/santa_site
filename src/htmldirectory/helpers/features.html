@@ -1,0 +1,27 @@
+{% macro make_article(article) -%}
+<article class="col-4 col-12-mobile special">
+    <a href="{{ article.href }}" class="image featured"><img src="{{ article.img }}" alt="{{ article.alt }}" /></a>
+    <header>
+        <h3><a href="{{ article.href }}">{{ article.header }}</a></h3>
+    </header>
+    <p>{{ article.content }}</p>
+</article>
+{%- endmacro %}
+
+{% macro make_features(header_h2, header_p, articles) -%}
+<!-- Features -->
+<div class="wrapper style1">
+    <section id="features" class="container special">
+        <header>
+            <h2>{{ header_h2 }}</h2>
+            <p>{{ header_p }}</p>
+        </header>
+        <div class="row">
+            {% for article in articles %}
+            {{ make_article(article) }}
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{%- endmacro %}

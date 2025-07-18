@@ -1,0 +1,21 @@
+
+{% macro make_article(article) -%}
+<article>
+    <a href="{{ article.href }}" class="image featured"><img src="{{ article.img }}" alt="{{ article.alt }}" /></a>
+    <header>
+        <h3><a href="{{ article.href }}">{{ article.header }}</a></h3>
+    </header>
+    <p>{{ article.content }}</p>
+</article>
+{%- endmacro %}
+
+{% macro carousel(articles) -%}
+<!-- Carousel -->
+<section class="carousel">
+    <div class="reel">
+        {% for article in articles %}
+            {{ make_article(article) }}
+        {% endfor %}
+    </div>
+</section>
+{%- endmacro %}

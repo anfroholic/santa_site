@@ -10,7 +10,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware 
 from src.choose_adventure import story, lookup, adventures
 
-import io, json
+import io, json, os
+from pprint import pprint
 # import debugpy
 hostname='santamark4xmas.com'
 # debugpy.listen(("0.0.0.0", 5678))
@@ -41,6 +42,10 @@ async def home(request: Request):
 @app.get("/booking", response_class=HTMLResponse)
 async def calendar(request: Request):
     return templates.TemplateResponse('booking.html', {'request': request, 'hostname': hostname})
+
+@app.get("/test_home", response_class=HTMLResponse)
+async def calendar(request: Request):
+    return templates.TemplateResponse('test_home.html', {'request': request, 'hostname': hostname})
 
 @app.get("/map", response_class=HTMLResponse)
 async def calendar(request: Request):
@@ -142,6 +147,11 @@ pics = [
 ]
 
 
+pics = {}
+for file in os.listdir('src/static/pics'):
+    parts = file.split('.')
+    pics[parts[0]] = parts[1]
+    
 @app.get("/gallery", response_class=HTMLResponse)
 async def calendar(request: Request):
     return templates.TemplateResponse('gallery.html', {'request': request, 'pics': pics, 'hostname': hostname})
