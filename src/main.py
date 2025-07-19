@@ -31,6 +31,52 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+blogposts = [
+    {'href': '/blog/tobor',
+    'alt': 'evezor robotic arm tobor',
+    'img': '/static/sample_image.jpg',
+    'header': 'Mandy Ringe',
+    'content': "Book Santa Mark with Mandy Ringe Photography"
+    },
+    {'href': '/blog/beta_arms',
+    'alt': 'evezor robotic arms version 2',
+    'img': '/static/sample_image.jpg',
+    'header': 'Mimi J',
+    'content': "Book Santa Mark with Mimi J Photography"
+    },
+    {'href': '/blog/edge_boards',
+    'alt': 'evezor edge boards',
+    'img': '/static/sample_image.jpg',
+    'header': 'Melissa Guinti',
+    'content': 'Book Santa Mark with Melissa Guinti Photography'
+    },
+    {'href': '/blog/floe_ide',
+    'alt': 'evezor floe ide programming environment',
+    'img': '/static/sample_image.jpg',
+    'header': 'Jessica Ditore',
+    'content': 'Book Santa Mark with Jessica Ditore Photography'
+    },
+    {'href': '/blog/floe_ide',
+    'alt': 'evezor floe ide programming environment',
+    'img': '/static/sample_image.jpg',
+    'header': 'Carmela Luca',
+    'content': 'Book Santa Mark with Carmela Luca Photography'
+    },
+    {'href': '/blog/floe_ide',
+    'alt': 'evezor floe ide programming environment',
+    'img': '/static/sample_image.jpg',
+    'header': 'Joan Julie Gockman',
+    'content': 'Book Santa Mark with Joan Julie Gockman Photography'
+    },
+    {'href': '/blog/floe_ide',
+    'alt': 'evezor floe ide programming environment',
+    'img': '/static/sample_image.jpg',
+    'header': 'Christine Retzer',
+    'content': 'Book Santa Mark with Christine Retzer Photography'
+    },
+]
+
+
 # @app.on_event("startup")
 # async def startup_event():
 #     """Start up event for FastAPI application."""
@@ -45,7 +91,7 @@ async def calendar(request: Request):
 
 @app.get("/test_home", response_class=HTMLResponse)
 async def calendar(request: Request):
-    return templates.TemplateResponse('test_home.html', {'request': request, 'hostname': hostname})
+    return templates.TemplateResponse('test_home.html', {'request': request, 'blogposts': blogposts, 'hostname': hostname})
 
 @app.get("/map", response_class=HTMLResponse)
 async def calendar(request: Request):
