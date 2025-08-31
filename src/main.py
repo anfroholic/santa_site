@@ -32,9 +32,9 @@ app.add_middleware(
 )
 
 blogposts = [
-    {'href': '/blog/tobor',
+    {'href': '/blog/mandy-ringe',
     'alt': 'evezor robotic arm tobor',
-    'img': '/static/sample_image.jpg',
+    'img': '/static/home/photographers/mandy-ringe.jpg',
     'header': 'Mandy Ringe',
     'content': "Book Santa Mark with Mandy Ringe Photography"
     },
@@ -59,8 +59,8 @@ blogposts = [
     {'href': '/blog/floe_ide',
     'alt': 'evezor floe ide programming environment',
     'img': '/static/sample_image.jpg',
-    'header': 'Carmela Luca',
-    'content': 'Book Santa Mark with Carmela Luca Photography'
+    'header': 'Carmela Lucarelli',
+    'content': 'Book Santa Mark with Amore Mio Photography'
     },
     {'href': '/blog/floe_ide',
     'alt': 'evezor floe ide programming environment',

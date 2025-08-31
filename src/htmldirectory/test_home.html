@@ -18,6 +18,39 @@
   <noscript>
     <link rel="stylesheet" href="/static/home/assets/css/noscript.css" />
   </noscript>
+
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      width: 80%;
+      max-width: 640px;
+      background: #000;
+    }
+
+    .modal-content video {
+      width: 100%;
+      height: auto;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      color: #fff;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body class="homepage is-preload">
@@ -58,7 +91,7 @@
           <br>
           <h2>Your Favorite Santa</h2>
         </header>
-        <a href="/gallery" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+        <a href="/gallery" class="image featured"><img src="/static/home/images/santa_book.jpg" alt="" /></a>
         <p>
           Santa Mark brings holiday magic to every occasion—big or small. With a warm smile, professional demeanor, and years of experience, Santa Mark is the perfect choice for everything from corporate holiday parties and community events to private family gatherings and photo sessions. His authentic look and joyful spirit make him a trusted favorite for spreading cheer in both casual and professional settings.
         </p>
@@ -83,7 +116,7 @@
         
         <div class="row">
           <article class="col-6 col-12-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/home-visits.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Home Visits</a></h3>
             </header>
@@ -95,7 +128,7 @@
           </article>
           
           <article class="col-6 col-12-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/corporate-events.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Corporate and Restaurant Events </a></h3>
             </header>
@@ -107,7 +140,7 @@
           </article>
 
           <article class="col-6 col-12-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/story-reading.jpg" alt="" /></a>
             <header>
               <h3><a href="#"></a>Story Reading and Singing</h3>
             </header>
@@ -119,7 +152,9 @@
           </article>
           
           <article class="col-6 col-12-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+          <img src="static/artwork/logo/sneaky_tmb.png" alt="Watch Video" style="width:100%; cursor:pointer;" onclick="openModal()">
+          </span><br>
+          <span style="color: red; margin-left:20px"><strong>Watch to the end!!</strong></span>
             <header>
               <h3><a href="#">Sneaky Santa</a></h3>
             </header>
@@ -133,6 +168,10 @@
         </div>
       </section>
       </article>
+    <div style="display: flex; justify-content: center;">
+      <a href="/booking" class="button">Book Now!</a>
+    </div>
+      
     </div>
 
     <!-- PHOTOGRAPHERS -->
@@ -182,7 +221,7 @@
           </article>
           
           <article class="col-6 col-6-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/movie-spot.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Movie Spot</a></h3>
             </header>
@@ -210,7 +249,7 @@
         </header>
         <div class="row">
           <article class="col-3 col-6-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/lighting.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Town Tree Lighting Ceremony</a></h3>
             </header>
@@ -222,7 +261,7 @@
           </article>
           
           <article class="col-3 col-6-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/farmers-market.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Christmas in July</a></h3>
             </header>
@@ -234,7 +273,7 @@
           </article>
 
           <article class="col-3 col-6-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/nightmare-b4-xmas.jpg" alt="" /></a>
             <header>
               <h3><a href="#"></a>Nighmare Before Christmas</h3>
             </header>
@@ -247,7 +286,7 @@
           </article>
           
           <article class="col-3 col-6-mobile special">
-            <a href="#" class="image featured"><img src="/static/sample_image.jpg" alt="" /></a>
+            <a href="#" class="image featured"><img src="/static/home/images/swimming.jpg" alt="" /></a>
             <header>
               <h3><a href="#">Summer Clause Swimming with Santa</a></h3>
             </header>
@@ -285,6 +324,7 @@
 
     <footer>
       <a href="/booking" class="button">Book Now!</a>
+      <div style="height: 2em;"></div>
     </footer>
   </section>
   
@@ -302,8 +342,60 @@
   <script src="/static/home/assets/js/breakpoints.min.js"></script>
   <script src="/static/home/assets/js/util.js"></script>
   <script src="/static/home/assets/js/main.js"></script>
+
+
+<!-- <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Santa Mark",
+  "image": "https://www.huntleysanta.com/images/santa-preview.jpg",
+  "@id": "https://santamark4xmas.com/",
+  "url": "https://santamark4xmas.com/",
+  "telephone": "+1-815-345-3330",
+  "description": "Santa Claus appearances for parties, community events, and private visits in Huntley, IL and surrounding areas.",
+  "priceRange": "75.00",
+  "sameAs": [
+    "https://www.facebook.com/huntleysanta",
+    "https://www.instagram.com/huntleysanta"
+  ]
+}
+</script> -->
+
+<!-- Modal structure -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <video id="videoPlayer" controls>
+      <source src="/static/videos/sneaky_santa.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    var modal = document.getElementById("videoModal");
+    var video = document.getElementById("videoPlayer");
+    modal.style.display = "block";
+    video.currentTime = 0;
+    video.play();
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("videoModal");
+    var video = document.getElementById("videoPlayer");
+    modal.style.display = "none";
+    video.pause();
+  }
+
+  // Close modal when clicking outside content
+  window.onclick = function(event) {
+    var modal = document.getElementById("videoModal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
 </body>
-
-
-
 </html>
